@@ -1,13 +1,34 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ExternalLink, Github } from "lucide-react"
+import { ExternalLink, Github, ArrowRight } from "lucide-react"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Image from "next/image"
 
-const projects = [
+type Project = {
+  title: string
+  description: string
+  image: string
+  tags: string[]
+  github: string
+  demo: string
+  caseStudy?: string
+}
+
+const projects: Project[] = [
+  {
+    title: "SpoonApp — Restaurant landing",
+    description:
+      "Marketing and merchant portal UI for a restaurant platform: responsive layouts, auth flows, interactive 3D kitchen sections, and multi-language content (Next.js static export).",
+    image: "/spoonapp-landing-preview.jpg",
+    tags: ["Next.js", "TypeScript", "Tailwind", "Framer Motion"],
+    github: "https://github.com/LidoRicoM/spoonapp-landing",
+    demo: "https://lidoricom.github.io/spoonapp-landing/",
+    caseStudy: "/work/spoonapp/",
+  },
   {
     title: "E-Commerce Platform",
     description:
@@ -113,6 +134,16 @@ export function Projects() {
                       </Badge>
                     ))}
                   </div>
+
+                  {project.caseStudy ? (
+                    <Link
+                      href={project.caseStudy}
+                      className="inline-flex items-center gap-1 text-sm font-medium text-accent hover:underline mb-4"
+                    >
+                      Project notes and context
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  ) : null}
 
                   <div className="flex gap-3">
                     <Button variant="outline" size="sm" className="flex-1 rounded-xl bg-transparent" asChild>
